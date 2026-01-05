@@ -11,3 +11,12 @@
 /FrontEnd/.github
 
 
+
+# =============== BackEnd ==================
+# dependencies
+/BackEnd/node_modules/
+/BackEnd/package-lock.json
+
+# Express
+/BackEnd/.github
+
