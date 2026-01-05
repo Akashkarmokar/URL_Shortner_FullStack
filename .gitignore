@@ -1,0 +1,13 @@
+
+# =============== FrontEnd ==================
+# dependencies
+/FrontEnd/node_modules/
+/FrontEnd/package-lock.json
+
+# next.js
+/FrontEnd/.next/
+/FrontEnd/out/
+/FrontEnd/build
+/FrontEnd/.github
+
+
