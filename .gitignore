@@ -19,4 +19,10 @@
 
 # Express
 /BackEnd/.github
+/BackEnd/dist
+
+
+# =============== Global ==================
+_commands.md
+
 
