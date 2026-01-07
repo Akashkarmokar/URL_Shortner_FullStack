@@ -1,12 +1,13 @@
-import type { Express, Request, Response } from "express";
+import type { Express } from "express";
+
 import express from "express";
+import { PORT } from "./secrets.js";
+import rootRouter from "./routes/index.js";
 
 const app: Express = express();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, World!");
-});
+app.use("/api", rootRouter);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is running on http://localhost:3000");
 });
