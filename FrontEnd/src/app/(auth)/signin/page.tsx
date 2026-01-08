@@ -90,48 +90,14 @@ const SignIn = () => {
                                     className="focus:ring-primary-600 focus:border-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                                 />
                             </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex h-5 items-center">
-                                        <input
-                                            id="remember"
-                                            aria-describedby="remember"
-                                            type="checkbox"
-                                            className="focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-3 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                                        />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label
-                                            htmlFor="remember"
-                                            className="text-gray-500 dark:text-gray-300"
-                                        >
-                                            Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                                <a
-                                    href="#"
-                                    className="text-primary-600 dark:text-primary-500 text-sm font-medium hover:underline"
-                                >
-                                    Forgot password?
-                                </a>
-                            </div>
+
                             <button
                                 onClick={HandleSubmit}
                                 type="submit"
-                                className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4 focus:outline-none"
+                                className="bg-primary-600 hover:bg-primary-700 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 w-full rounded-lg border px-5 py-2.5 text-center text-sm font-medium text-white focus:ring-4 focus:outline-none"
                             >
                                 Sign in
                             </button>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet?{" "}
-                                <a
-                                    href="#"
-                                    className="text-primary-600 dark:text-primary-500 font-medium hover:underline"
-                                >
-                                    Sign up
-                                </a>
-                            </p>
                         </form>
                     </div>
                 </div>
