@@ -4,6 +4,6 @@ import { signIn, signUp } from "../controllers/auth.js";
 const authRouters = Router();
 
 authRouters.post("/signin", signIn);
-authRouters.post("/signup", signUp); // Placeholder for signup controller
+authRouters.post("/signup", signUp);
 
 export default authRouters;

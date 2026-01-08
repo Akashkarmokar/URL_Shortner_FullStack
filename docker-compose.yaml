@@ -1,37 +1,37 @@
 name: URL_Shortner_FullStack
 services:
-  nextjs:
-    container_name: nextjs_dev
-    build:
-      context: ./FrontEnd
-      dockerfile: Dockerfile
-    ports:
-      - "8000:3000"
-    volumes:
-      - ./FrontEnd:/app
-      - /app/node_modules
-      - /app/.next
-    # env_file:
-    #   - .env.local
-    environment:
-      - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING_INTERVAL=1000
-    restart: always
-    command: npm run dev
-  # postgres_db:
-  #   image: postgres:15
-  #   container_name: postgres_db_url_shortener
-  #   restart: always
-  #   environment:
-  #     POSTGRES_USER: user
-  #     POSTGRES_PASSWORD: password
-  #     POSTGRES_DB: url_shortener
+  # nextjs:
+  #   container_name: nextjs_dev
+  #   build:
+  #     context: ./FrontEnd
+  #     dockerfile: Dockerfile
   #   ports:
-  #     - "5432:5432"
-  # volumes:
-  #   - postgres_for_url_shortener:/var/lib/postgresql/data
+  #     - "8000:3000"
+  #   volumes:
+  #     - ./FrontEnd:/app
+  #     - /app/node_modules
+  #     - /app/.next
+  #   # env_file:
+  #   #   - .env.local
+  #   environment:
+  #     - NODE_ENV=development
+  #     - WATCHPACK_POLLING=true
+  #     - CHOKIDAR_USEPOLLING=true
+  #     - WATCHPACK_POLLING_INTERVAL=1000
+  #   restart: always
+  #   command: npm run dev
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_db_url_shortener
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: url_shortener
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - postgres_for_url_shortener:/var/lib/postgresql/data
   # express_app:
   #   container_name: backend_server_url_shortener
   #   build: ./BackEnd/.

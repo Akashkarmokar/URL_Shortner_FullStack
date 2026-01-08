@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-const DashboardTable = () => {
+
+const DashboardTable = ({}) => {
     return (
         <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto border shadow-xs">
             <table className="text-body w-full text-left text-sm rtl:text-right">

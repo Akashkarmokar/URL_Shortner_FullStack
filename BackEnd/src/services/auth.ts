@@ -17,5 +17,5 @@ export const comparePasswords = (
 export const jwt_signed_data = (value: any) => {
   console.log("JWT_SECRET:", JWT_SECRET);
   console.log("Value to sign:", value);
-  return jwt.sign(value, JWT_SECRET, { expiresIn: "1h" });
+  return jwt.sign(value, JWT_SECRET, { expiresIn: "7d" });
 };
