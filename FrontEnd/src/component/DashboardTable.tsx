@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect } from "react";
-import { apiFetch } from "../_lib/helper";
+import React, { useEffect, useState } from "react";
+import { FaClipboardList } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 type UrlData = {
     id: number;
@@ -12,149 +13,112 @@ type UrlData = {
     updatedAt: string;
 };
 
-const DashboardTable = () => {
-    const [urlData, setUrlData] = React.useState<UrlData[]>([]);
+const DashboardTable = ({
+    urlData,
+    onDelete,
+}: {
+    urlData: UrlData[];
+    onDelete: (id: number) => void;
+}) => {
+    const [origin, setOrigin] = useState("");
 
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await apiFetch("/api/urls/all");
-            const data = await res.json();
-            setUrlData(data.urls);
-        };
-
-        fetchData();
+        setOrigin(window.location.origin);
     }, []);
-
-    const HandleDeleteUrl = (id: Number) => {
-        (async () => {
-            const res = await apiFetch(`/api/urls/delete/${id}`, {
-                method: "DELETE",
-            });
-            if (res.status === 200) {
-                setUrlData(urlData.filter((url) => url.id !== id));
-            }
-        })();
-    };
-
     return (
-        <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto border shadow-xs">
-            <table className="text-body w-full text-left text-sm rtl:text-right">
-                <thead className="text-body bg-neutral-secondary-medium border-default-medium border-b text-sm text-white">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Color
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {urlData.map((value, index) => (
-                        <tr
-                            key={index}
-                            className="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium border-b text-white"
-                        >
-                            <td
-                                scope="row"
-                                className="text-heading px-6 py-4 font-medium whitespace-nowrap"
-                            >
-                                {value.originalURL}
-                            </td>
-                            <td className="px-6 py-4">{value.shortURL}</td>
-                            <td className="px-6 py-4">{value.countVisits}</td>
-                            <td className="px-6 py-4">{value.createdAt}</td>
-                            <td className="px-6 py-4">
-                                <button
-                                    onClick={() => HandleDeleteUrl(value.id)}
-                                    className="text-fg-brand font-medium text-red-600 hover:underline"
+        <>
+            {urlData.length === 0 ? (
+                <p className="text-center text-white">No URLs found.</p>
+            ) : (
+                <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto border shadow-xs">
+                    <table className="text-body w-full text-left text-sm rtl:text-right">
+                        <thead className="text-body bg-neutral-secondary-medium border-default-medium border-b text-sm text-white">
+                            <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Product name
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Short Url
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Click Count
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Date
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {urlData.map((value, index) => (
+                                <tr
+                                    key={index}
+                                    className="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium border-b text-white"
                                 >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <nav
-                className="flex-column flex flex-wrap items-center justify-between p-4 text-white md:flex-row"
-                aria-label="Table navigation"
-            >
-                <span className="text-body mb-4 block w-full text-sm font-normal md:mb-0 md:inline md:w-auto">
-                    Showing{" "}
-                    <span className="text-heading font-semibold">1-10</span> of{" "}
-                    <span className="text-heading font-semibold">1000</span>
-                </span>
-                <ul className="flex -space-x-px text-sm">
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading rounded-s-base box-border flex h-9 items-center justify-center border px-3 text-sm font-medium focus:outline-none"
-                        >
-                            Previous
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading box-border flex h-9 w-9 items-center justify-center border text-sm font-medium focus:outline-none"
-                        >
-                            1
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading box-border flex h-9 w-9 items-center justify-center border text-sm font-medium focus:outline-none"
-                        >
-                            2
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            aria-current="page"
-                            className="text-fg-brand bg-brand-softer border-default-medium hover:bg-brand-soft hover:text-fg-brand box-border flex h-9 w-9 items-center justify-center border text-sm font-medium focus:outline-none"
-                        >
-                            3
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading box-border flex h-9 w-9 items-center justify-center border text-sm font-medium focus:outline-none"
-                        >
-                            ...
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading box-border flex h-9 w-9 items-center justify-center border text-sm font-medium focus:outline-none"
-                        >
-                            5
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            className="text-body bg-neutral-secondary-medium border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading rounded-e-base box-border flex h-9 items-center justify-center border px-3 text-sm font-medium focus:outline-none"
-                        >
-                            Next
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                                    <td
+                                        scope="row"
+                                        className="text-heading px-6 py-4 font-medium whitespace-nowrap"
+                                    >
+                                        {value.originalURL}
+                                    </td>
+                                    {/* <td className="px-6 py-4">
+                                <a
+                                    href={`http://localhost:3000/r/${value.shortURL}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 hover:underline"
+                                >
+                                    {`http://localhost:3000/r/${value.shortURL}`}
+                                </a>
+                                <FaClipboardList />
+                            </td> */}
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-2">
+                                            <a
+                                                href={`http://localhost:3000/r/${value.shortURL}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="truncate text-blue-400 hover:underline"
+                                                title={value.shortURL} // optional tooltip
+                                            >
+                                                {`http://localhost:3000/r/${value.shortURL}`}
+                                            </a>
+                                            <FaClipboardList
+                                                className="text-white-500 cursor-pointer hover:text-gray-700"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(
+                                                        `http://localhost:3000/r/${value.shortURL}`
+                                                    );
+                                                    toast.success(
+                                                        "Copied to clipboard!"
+                                                    );
+                                                }}
+                                            />
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {value.countVisits}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {value.createdAt}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <button
+                                            onClick={() => onDelete(value.id)}
+                                            className="text-fg-brand font-medium text-red-600 hover:underline"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+        </>
     );
 };
 

@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
     const [email, setEmail] = useState("ak2@gmail.com");
     const [password, setPassword] = useState("asf");
-
+    const router = useRouter();
     const HandleSubmit = () => {
         async function submitData() {
             const res = await fetch("http://localhost:3000/api/auth/signin", {
@@ -21,11 +22,10 @@ const SignIn = () => {
             if (res.status === 200) {
                 Cookies.set("token", data.token, { expires: 7 });
                 const id = toast.loading("Credential Processing...");
-                setTimeout(() => {
-                    toast.success("LoggedIn Successfully", {
-                        id,
-                    });
-                }, 2000);
+                toast.success("LoggedIn Successfully", {
+                    id,
+                });
+                router.push("/dashboard");
             } else {
                 const id = toast.loading("LoogedIn Failed...");
                 setTimeout(() => {

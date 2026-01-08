@@ -2,14 +2,15 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-    const HandleSubmit = () => {
-        const id = toast.loading("Credential Processing...");
+    const router = useRouter();
+    const HandleSubmit = async () => {
+        const id = toast.loading("Signup Processing...");
         async function submitData() {
             const res = await fetch("http://localhost:3000/api/auth/signup", {
                 method: "POST",
@@ -20,23 +21,19 @@ const SignUp = () => {
             });
             const data = await res.json();
 
-            if (res.status === 200) {
-                Cookies.set("token", data.token, { expires: 7 });
-                setTimeout(() => {
-                    toast.success("Signed Up Successfully", {
-                        id,
-                    });
-                }, 2000);
+            if (res.status === 201) {
+                toast.success("Signed Up Successfully", {
+                    id,
+                });
+                router.push("/signin");
             } else {
-                setTimeout(() => {
-                    toast.success(data.message || "Something went wrong", {
-                        id,
-                    });
-                }, 2000);
+                toast.success(data.message || "Something went wrong", {
+                    id,
+                });
             }
         }
         if (email && password) {
-            submitData();
+            await submitData();
         } else {
             setTimeout(() => {
                 toast.success("Please fill all the fields", {
@@ -52,7 +49,7 @@ const SignUp = () => {
                 <div className="w-full rounded-lg bg-white shadow sm:max-w-md md:mt-0 xl:p-0 dark:border dark:border-gray-700 dark:bg-gray-800">
                     <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
                         <h1 className="text-xl leading-tight font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Sign in to your account
+                            Sign up to your account
                         </h1>
                         <div className="space-y-4 md:space-y-6">
                             <div>
