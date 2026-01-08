@@ -55,7 +55,6 @@ const Dashboard = () => {
                 toast.error("Failed to shorten URL", {
                     id,
                 });
-                ShortenerCreateHandler();
             }, 500);
         }
     };
