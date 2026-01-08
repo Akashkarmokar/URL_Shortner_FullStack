@@ -125,13 +125,3 @@ You can add additional vars in `BackEnd/.env` as needed.
 
 - There are existing Prisma migrations under `BackEnd/prisma/migrations/` — use `npx prisma migrate dev` to apply them when the DB is ready.
 - Frontend pages call `http://localhost:3000/api/...` directly — if you change backend port, update all API URLs or run the frontend with a proxy.
-
----
-
-If you want, I can also:
-
-- Add a `.env.example` file to the repo,
-- Add a single `docker-compose` configuration that starts DB + backend + frontend together,
-- Or update CORS to allow `http://localhost:3000` as well (so frontend can run on `3000`).
-
-Let me know which of those you'd like next. ✅
