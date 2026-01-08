@@ -45,7 +45,7 @@ const SignIn = () => {
                         <h1 className="text-xl leading-tight font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign in to your account
                         </h1>
-                        <div className="space-y-4 md:space-y-6" action="#">
+                        <div className="space-y-4 md:space-y-6">
                             <div>
                                 <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
                                     Your email

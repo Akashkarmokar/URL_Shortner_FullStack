@@ -1,7 +1,41 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
+import { apiFetch } from "../_lib/helper";
 
-const DashboardTable = ({}) => {
+type UrlData = {
+    id: number;
+    originalURL: string;
+    shortURL: string;
+    userId: number;
+    countVisits: number;
+    createdAt: string;
+    updatedAt: string;
+};
+
+const DashboardTable = () => {
+    const [urlData, setUrlData] = React.useState<UrlData[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await apiFetch("/api/urls/all");
+            const data = await res.json();
+            setUrlData(data.urls);
+        };
+
+        fetchData();
+    }, []);
+
+    const HandleDeleteUrl = (id: Number) => {
+        (async () => {
+            const res = await apiFetch(`/api/urls/delete/${id}`, {
+                method: "DELETE",
+            });
+            if (res.status === 200) {
+                setUrlData(urlData.filter((url) => url.id !== id));
+            }
+        })();
+    };
+
     return (
         <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto border shadow-xs">
             <table className="text-body w-full text-left text-sm rtl:text-right">
@@ -25,24 +59,27 @@ const DashboardTable = ({}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <tr className="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium border-b text-white">
+                    {urlData.map((value, index) => (
+                        <tr
+                            key={index}
+                            className="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium border-b text-white"
+                        >
                             <td
                                 scope="row"
                                 className="text-heading px-6 py-4 font-medium whitespace-nowrap"
                             >
-                                Apple MacBook Pro 17"
+                                {value.originalURL}
                             </td>
-                            <td className="px-6 py-4">Silver</td>
-                            <td className="px-6 py-4">Laptop</td>
-                            <td className="px-6 py-4">$2999</td>
+                            <td className="px-6 py-4">{value.shortURL}</td>
+                            <td className="px-6 py-4">{value.countVisits}</td>
+                            <td className="px-6 py-4">{value.createdAt}</td>
                             <td className="px-6 py-4">
-                                <a
-                                    href="#"
+                                <button
+                                    onClick={() => HandleDeleteUrl(value.id)}
                                     className="text-fg-brand font-medium text-red-600 hover:underline"
                                 >
                                     Delete
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     ))}
