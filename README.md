@@ -18,7 +18,7 @@ A simple, full-stack URL shortener built with:
   - [Architecture 🔧](#architecture-)
   - [Prerequisites](#prerequisites)
   - [Environment variables](#environment-variables)
-  - [Quickstart (recommended)](#quickstart-recommended)
+  - [Quickstart](#quickstart)
   - [Run with Docker Compose (full stack) \[Recommended\]](#run-with-docker-compose-full-stack-recommended)
   - [Environment variables](#environment-variables-1)
   - [Extra Cautions: Scripts to help you to deep drive .](#extra-cautions-scripts-to-help-you-to-deep-drive-)
@@ -62,7 +62,6 @@ This repo contains a lightweight URL shortener service with a web dashboard for 
 
 ---
 
-
 ## Environment variables
 
 Examples are provided at `BackEnd/.env.example` and `FrontEnd/.env.local.example`.
@@ -86,8 +85,7 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
 
 ---
 
-## Quickstart (recommended)
-
+## Quickstart
 
 Clone the repository:
 
