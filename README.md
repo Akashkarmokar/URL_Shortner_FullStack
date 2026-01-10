@@ -17,8 +17,8 @@ A simple, full-stack URL shortener built with:
   - [Features ✅](#features-)
   - [Architecture 🔧](#architecture-)
   - [Prerequisites](#prerequisites)
-  - [Quickstart (recommended)](#quickstart-recommended)
-  - [Run with Docker Compose (full stack)](#run-with-docker-compose-full-stack)
+  - [Quickstart](#quickstart)
+  - [Run with Docker Compose (full stack) \[Recommended\]](#run-with-docker-compose-full-stack-recommended)
   - [Environment variables](#environment-variables)
   - [Extra Cautions: Scripts to help you to deep drive .](#extra-cautions-scripts-to-help-you-to-deep-drive-)
   - [Backend (Prisma \& scripts)](#backend-prisma--scripts)
@@ -60,7 +60,7 @@ This repo contains a lightweight URL shortener service with a web dashboard for 
 
 ---
 
-## Quickstart (recommended)
+## Quickstart
 
 Clone the repository:
 
@@ -100,7 +100,9 @@ Open the app at: `http://localhost:3001`
 
 ---
 
-## Run with Docker Compose (full stack)
+![Important](https://img.shields.io/badge/Important-Read%20this-red)
+
+## Run with Docker Compose (full stack) [Recommended]
 
 The provided `docker-compose.yaml` includes services for **nextjs**, **postgres_db**, and **express_app**. To run the full stack locally with Docker Compose:
 
@@ -150,8 +152,6 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
 > Tip: When running with Docker Compose, use the docker service names in `DATABASE_URL` (e.g., `postgres_db`) so containers can reach the DB.
 
 ---
-
-**_Note: If you can do up to this, system is ready to run_**
 
 ## Extra Cautions: Scripts to help you to deep drive .
 
