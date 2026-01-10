@@ -17,9 +17,10 @@ A simple, full-stack URL shortener built with:
   - [Features ✅](#features-)
   - [Architecture 🔧](#architecture-)
   - [Prerequisites](#prerequisites)
+  - [Environment variables](#environment-variables)
   - [Quickstart (recommended)](#quickstart-recommended)
   - [Run with Docker Compose (full stack)](#run-with-docker-compose-full-stack)
-  - [Environment variables](#environment-variables)
+  - [Environment variables](#environment-variables-1)
   - [Extra Cautions: Scripts to help you to deep drive .](#extra-cautions-scripts-to-help-you-to-deep-drive-)
   - [Backend (Prisma \& scripts)](#backend-prisma--scripts)
   - [Frontend](#frontend)
@@ -54,9 +55,32 @@ This repo contains a lightweight URL shortener service with a web dashboard for 
 
 ## Prerequisites
 
-- Node.js 18+ and npm
+- Node.js 20+ and npm
 - Docker & Docker Compose (if using containers)
 - Git
+
+---
+
+## Environment variables
+
+Examples are provided at `BackEnd/.env.example` and `FrontEnd/.env.local.example`.
+
+BackEnd (`BackEnd/.env`):
+
+```env
+DATABASE_URL="postgresql://user:password@postgres_db:5432/url_shortener"
+JWT_SECRET="your_jwt_secret"
+PORT=3000
+NODE_ENV=development
+```
+
+FrontEnd (`FrontEnd/.env.local`):
+
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+```
+
+> Tip: When running with Docker Compose, use the docker service names in `DATABASE_URL` (e.g., `postgres_db`) so containers can reach the DB.
 
 ---
 
