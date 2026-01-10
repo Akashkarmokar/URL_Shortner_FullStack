@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import DashboardTable from "@/component/DashboardTable";
 import toast from "react-hot-toast";
 import { apiFetch } from "../../_lib/helper";
+import Cookies from "js-cookie";
 
 type UrlData = {
     id: number;

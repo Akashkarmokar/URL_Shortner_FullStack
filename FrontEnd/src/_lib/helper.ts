@@ -1,4 +1,7 @@
+"use client";
+
 import Cookies from "js-cookie";
+import { env } from "../_lib/config";
 
 type RequestInit = {
     method?: string;
@@ -18,7 +21,8 @@ type RequestInit = {
 
 export function apiFetch(url: string, opts: RequestInit = {}) {
     const token = Cookies.get("token");
-    const baseUrl = "http://localhost:3000";
+
+    const baseUrl = env.NEXT_PUBLIC_API_BASE_URL;
     const headers = {
         "Content-Type": "application/json",
         ...(opts.headers || {}),

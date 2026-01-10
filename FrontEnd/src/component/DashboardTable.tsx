@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaClipboardList } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { env } from "../_lib/config";
 
 type UrlData = {
     id: number;
@@ -57,39 +58,40 @@ const DashboardTable = ({
                                     key={index}
                                     className="bg-neutral-primary-soft border-default hover:bg-neutral-secondary-medium border-b text-white"
                                 >
+                                    {/* <td
+                                        scope="row"
+                                        className="text-heading truncate px-6 py-4 font-medium whitespace-nowrap"
+                                    >
+                                        {value.originalURL}
+                                    </td> */}
                                     <td
                                         scope="row"
                                         className="text-heading px-6 py-4 font-medium whitespace-nowrap"
                                     >
-                                        {value.originalURL}
+                                        <span
+                                            className="block max-w-[320px] cursor-pointer truncate"
+                                            title={value.originalURL}
+                                        >
+                                            {value.originalURL}
+                                        </span>
                                     </td>
-                                    {/* <td className="px-6 py-4">
-                                <a
-                                    href={`http://localhost:3000/r/${value.shortURL}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-400 hover:underline"
-                                >
-                                    {`http://localhost:3000/r/${value.shortURL}`}
-                                </a>
-                                <FaClipboardList />
-                            </td> */}
+
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-2">
                                             <a
-                                                href={`http://localhost:3000/r/${value.shortURL}`}
+                                                href={`${env.NEXT_PUBLIC_API_BASE_URL}/r/${value.shortURL}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="truncate text-blue-400 hover:underline"
                                                 title={value.shortURL} // optional tooltip
                                             >
-                                                {`http://localhost:3000/r/${value.shortURL}`}
+                                                {`${env.NEXT_PUBLIC_API_BASE_URL}/r/${value.shortURL}`}
                                             </a>
                                             <FaClipboardList
                                                 className="text-white-500 cursor-pointer hover:text-gray-700"
                                                 onClick={() => {
                                                     navigator.clipboard.writeText(
-                                                        `http://localhost:3000/r/${value.shortURL}`
+                                                        `${env.NEXT_PUBLIC_API_BASE_URL}/r/${value.shortURL}`
                                                     );
                                                     toast.success(
                                                         "Copied to clipboard!"

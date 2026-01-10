@@ -6,8 +6,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
 const SignIn = () => {
-    const [email, setEmail] = useState("ak2@gmail.com");
-    const [password, setPassword] = useState("asf");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const router = useRouter();
     const HandleSubmit = () => {
         async function submitData() {

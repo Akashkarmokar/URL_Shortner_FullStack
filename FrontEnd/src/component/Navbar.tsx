@@ -24,9 +24,7 @@ const Navbar = () => {
             >
                 <ul className="flex flex-col gap-2 md:flex-row md:items-center md:gap-[2vw]">
                     <a href="#about" onClick={handleLogout}>
-                        <li className="hover:text-gray-500">
-                            Logout ( Username )
-                        </li>
+                        <li className="hover:text-gray-500">Logout</li>
                     </a>
                     {/* <a href="#contact">
                         <li className="hover:text-gray-500">Contact</li>
