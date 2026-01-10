@@ -6,12 +6,13 @@ import rootRouter from "./routes/index.js";
 import { prisma } from "./lib/prisma.client";
 import { redirectShortUrl } from "./controllers/url.js";
 import cors from "cors";
+import { FRONTEND_URL} from "./secrets";
 
 const app: Express = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3001", // Next.js dev URL
+    origin: FRONTEND_URL, // Next.js dev URL
     credentials: true,
   })
 );
