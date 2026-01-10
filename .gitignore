@@ -3,6 +3,7 @@
 # dependencies
 /FrontEnd/node_modules/
 /FrontEnd/package-lock.json
+.env.local
 
 # next.js
 /FrontEnd/.next/
